@@ -1,21 +1,21 @@
- 
+
 import {useState, useEffect} from "react"
 import Axios from "axios";
  const useFetchProducts = ()=>{
      //fake api
-    const url = 'https://fakerapi.it/api/v1/products?_quantity=25';
+    const url = 'http://localhost:5000/allfooditems';
     const [products, setProducts] = useState(null)
     useEffect(()=>{
         const fetchProducts = async()=>{
             try{
                 //double destructuring
-                const {data:{data}} = await Axios(url)
-                console.log(data)
+                const {data} = await Axios.get(url)
+                //console.log(data)
                  setProducts(data)
 
             }
             catch(error){
-                console.log('errorS')
+                console.log(`Error is :${error.message}`)
             }
         }
         fetchProducts()
